@@ -68,11 +68,11 @@ const onDelete=async(val)=>{
   setDeleteEmply({id:val,name:empVal[0]?.name,email:empVal[0]?.email,contact:empVal[0]?.contact })
     
   }
-const deleteEmpHandler = async(e) => {
+const deleteEmpHandler = async() => {
   
   try {
-    const res = deleteEmp(e);
-    console.log("delete res", res);
+    const res = deleteEmp(deleteEmply?.id);
+    console.log("delete res",deleteEmply?.id, res);
   } catch (error) {}
   setShowConfirmModal(false);
 };
