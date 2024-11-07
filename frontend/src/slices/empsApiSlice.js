@@ -5,35 +5,35 @@ export const empsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getEmps: builder.query({
       query: () => ({
-        url: `/api/emplys/getEmplys`,
+        url: `${process.env.REACT_APP_BACKEND_URL}/api/emplys/getEmplys`,
         method: "GET",
       }),
     }),
 
     getSingleEmp: builder.query({
       query: (id) => ({
-        url: `/emplys/${id}`,
+        url: `${process.env.REACT_APP_BACKEND_URL}/emplys/${id}`,
         method: "GET",
       }),
     }),
     
     addEmp: builder.mutation({
       query: (data) => ({
-        url: `/api/upload/addEmp`,
+        url: `${process.env.REACT_APP_BACKEND_URL}/api/upload/addEmp`,
         method: "POST",
         body: data,
       }),
     }),
     editEmp: builder.mutation({
       query: ({id,data}) => ({
-        url: `/api/upload/${id}`,
+        url: `${process.env.REACT_APP_BACKEND_URL}/api/upload/${id}`,
         method: "PUT",
         body: data,
       }),
     }),
     deleteEmp: builder.mutation({
       query: (id) => ({
-        url: `/api/upload/${id}`,
+        url: `${process.env.REACT_APP_BACKEND_URL}/api/upload/${id}`,
         method: "DELETE",
         
       }),
