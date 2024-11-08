@@ -14,7 +14,7 @@ export const empsApiSlice = apiSlice.injectEndpoints({
 
     getSingleEmp: builder.query({
       query: (id) => ({
-        url: `${process.env.REACT_APP_BACKEND_URL}/emplys/${id}`,
+        url: `${process.env.REACT_APP_BACKEND_URL}/api/emplys/${id}`,
         method: "GET",
       }),
       providesTags: ["Emp"],
