@@ -3,7 +3,8 @@ import { Button, Form, Modal, Table } from "react-bootstrap";
 import {useEditEmpMutation, useDeleteEmpMutation } from "../slices/empsApiSlice";
 import {LinkContainer } from 'react-router-bootstrap'
 import Confirm from "../utils/Confirm";
-
+import '../Home.css'
+import { toast } from "react-toastify";
 const TableContainer = ({data}) => {
   const [eId,setEId]=useState("")
   const [name,setName]=useState("")
@@ -50,6 +51,7 @@ console.log(name,email,contact,image,eId)
       const res = await editEmp({id:eId,data:formData});
 
       console.log("submitHandler res try" + JSON.stringify(res));
+      toast.success("Successfully Editted")
     } catch (err) {
       console.log("submitHandler res catch" + e?.data?.message || err);
     }
@@ -73,11 +75,13 @@ const deleteEmpHandler = async() => {
   try {
     const res = deleteEmp(deleteEmply?.id);
     console.log("delete res",deleteEmply?.id, res);
+    toast.success("Successfully Deleted")
   } catch (error) {}
   setShowConfirmModal(false);
 };
   return (
     <>
+    
     {showConfirmModal && (
         <Confirm
         showConfirmModal={showConfirmModal}
@@ -148,8 +152,8 @@ const deleteEmpHandler = async() => {
       <Table bordered hover>
         <thead>
           <tr>
-            <th>#</th>
-            <th>Image</th>
+            <th >#</th>
+            <th >Image</th>
             <th>Name</th>
             <th>Email</th>
             <th>Contact</th>
@@ -159,14 +163,14 @@ const deleteEmpHandler = async() => {
 
         <tbody>
           {data?.slice(0)?.map((emp,i) => {
-            return(<tr key={i} value={emp._id} >
+            return(<tr key={i} value={emp._id} style={{verticalAlign:"middle"}}  >
               <td>{i+1}</td>
-              <td><img style={{height:"50px",width:"50px",borderRadius:"50%"}} src={emp.image}></img></td>
-              <td>{emp.name}</td>
+              <td className="d-flex justify-content-center align-items-center"><img style={{height:"50px",width:"50px",borderRadius:"50%"}} src={emp.image}></img></td>
+              <td style={{textTransform:"capitalize"}}>{emp.name}</td>
               <td>{emp.email}</td>
               <td>{emp.contact}</td>
               <td>
-              <LinkContainer to={"/Profile"}>
+              <LinkContainer to={`/Profile/${emp._id}`}>
               <Button className="btn btn-success " >View</Button></LinkContainer>
               <Button className="btn btn-secondary mx-2" value={emp._id} onClick={(e)=>onEdit(e.target.value)} >Edit</Button>
                 <Button className="btn btn-danger"value={emp._id} onClick={(e)=>onDelete(e.target.value)}>Delete</Button>
@@ -177,6 +181,7 @@ const deleteEmpHandler = async() => {
           })}
         </tbody>
       </Table>
+      
     </>
   );
 };

@@ -8,6 +8,8 @@ export const empsApiSlice = apiSlice.injectEndpoints({
         url: `${process.env.REACT_APP_BACKEND_URL}/api/emplys/getEmplys`,
         method: "GET",
       }),
+      providesTags: ["Emp"],
+
     }),
 
     getSingleEmp: builder.query({
@@ -15,6 +17,8 @@ export const empsApiSlice = apiSlice.injectEndpoints({
         url: `${process.env.REACT_APP_BACKEND_URL}/emplys/${id}`,
         method: "GET",
       }),
+      providesTags: ["Emp"],
+
     }),
     
     addEmp: builder.mutation({
@@ -23,6 +27,8 @@ export const empsApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Emp"],
+
     }),
     editEmp: builder.mutation({
       query: ({id,data}) => ({
@@ -30,6 +36,8 @@ export const empsApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
       }),
+      invalidatesTags: ["Emp"],
+
     }),
     deleteEmp: builder.mutation({
       query: (id) => ({
@@ -37,6 +45,8 @@ export const empsApiSlice = apiSlice.injectEndpoints({
         method: "DELETE",
         
       }),
+      invalidatesTags: ["Emp"],
+
     }),
   }),
 });

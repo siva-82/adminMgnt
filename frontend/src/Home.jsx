@@ -8,14 +8,18 @@ import FormContainerEmp from "./components/FormContainerEmp";
 import TableContainer from "./components/TableContainer";
 
 import { useGetEmpsQuery } from "./slices/empsApiSlice";
+import Navbar from './components/Navbar';
 const Home = () => {
     const [modalEmpShow, setModalEmpShow] = useState(false);
 
     const {data, isError, isLoading} = useGetEmpsQuery() || {};
   return (
+    <>
+    <div >
+    <Navbar/>
     
       <div className="container">
-    <h1>Management</h1>
+    
     <div className="row my-2">
 
       <FormContainerEmp
@@ -40,6 +44,8 @@ const Home = () => {
       {!isLoading && <TableContainer data={data} />}
     </div>
   </div>
+  </div>
+  </>
   )
 }
 

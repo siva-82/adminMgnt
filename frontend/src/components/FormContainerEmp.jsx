@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useAddEmpMutation } from "../slices/empsApiSlice";
+import { toast } from "react-toastify";
 const FormContainerEmp = ({ modalShow, setModalShow }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,6 +21,7 @@ const FormContainerEmp = ({ modalShow, setModalShow }) => {
     try {
       const res = await addEmp(formData).unwrap();
       console.log(res);
+      toast.success("Successfully Added")
     } catch (err) {
       console.log(" catch" + e?.data?.message || err);
     }

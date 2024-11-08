@@ -1,0 +1,7 @@
+.tableRow{
+    vertical-align: middle !important;
+}
+.coloring{
+    background-color: "red";
+    color: blue;
+}
