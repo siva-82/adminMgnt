@@ -16,7 +16,7 @@ const router =createBrowserRouter(
       createRoutesFromElements(
         <Route path='/' element={<App />}>
           <Route index={true} path='/' element={<Home/>}></Route>
-          <Route path='/Profile' element={<ProfilePage />}></Route>
+          <Route path='/Profile/:id' element={<ProfilePage />}></Route>
         </Route> 
       )
     )
